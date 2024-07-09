@@ -8,6 +8,7 @@ public class chest : MonoBehaviour
     public bool isPlayerNearby = false;
     public animation scriptPabloReference;
     public GameObject UIe;
+    public GameObject UIepe;
    
     // Define the action button (you can customize this in the Unity Input Manager)
      void Start()
@@ -48,7 +49,6 @@ public class chest : MonoBehaviour
         {
             // Reset the flag when the player exits the trigger zone
             isPlayerNearby = false;
-
             // You might want to hide the UI prompt here
         }
     }
@@ -56,6 +56,7 @@ public class chest : MonoBehaviour
     private void OpenChest()
     {
         scriptPabloReference.SlashUnlock = true; 
+        UIepe.SetActive(true);
         // Apply upgrades when the chest is opened
         ApplyUpgrades();
         // You might also want to add visual effects, sound, or other gameplay elements here

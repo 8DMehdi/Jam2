@@ -8,7 +8,8 @@ public class DialogueManager : MonoBehaviour
     public Text nameText;
     public Text dialogueText;
     public GameObject dialogueBox;
-
+    public GameObject UIepe;
+    public TarodevController.PlayerController playerController;
 
 
     private Queue<string> sentences;
@@ -21,6 +22,7 @@ public class DialogueManager : MonoBehaviour
     }
     public void StartDialogue(Dialogue dialogue)
     {
+        playerController._acceleration *= 0f;
         Debug.Log("parle avec" + dialogue.name);
         dialogueBox.SetActive(true);
 
@@ -70,5 +72,7 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log("end");
         dialogueBox.SetActive(false);
+        UIepe.SetActive(false);
+        playerController._acceleration = 110f;
     }
 }
