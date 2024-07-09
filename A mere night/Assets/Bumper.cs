@@ -9,7 +9,7 @@ public class Bumper : MonoBehaviour
 
 
     void OnTriggerEnter2D(Collider2D other)
-    {
+    {   
         playerController._jumpHeight *= 3f;
         
     }
