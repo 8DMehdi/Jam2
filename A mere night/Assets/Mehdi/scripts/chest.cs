@@ -65,7 +65,7 @@ public class chest : MonoBehaviour
     {
         
         
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
         foreach (Upgrade upgrade in upgrades)
         {
             // Apply the upgrade to the player or relevant game element
