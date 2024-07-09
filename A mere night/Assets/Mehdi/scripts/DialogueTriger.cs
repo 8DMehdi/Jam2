@@ -2,31 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class chest : MonoBehaviour
-{
-    public List<Upgrade> upgrades = new List<Upgrade>();
+public class DialogueTriger : MonoBehaviour
+{ 
+    public Dialogue dialogue;
     public bool isPlayerNearby = false;
-    public animation scriptPabloReference;
+    private DialogueManager dialogueManager;
     public GameObject UIe;
-   
-    // Define the action button (you can customize this in the Unity Input Manager)
-     void Start()
+
+
+    public void TriggerDialogue()
     {
-        // Get a reference to the 'animation' script
-        
+        FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
     }
+
 
     private void Update()
    {
+        dialogueManager = FindObjectOfType<DialogueManager>();
         if (Input.GetKeyDown(KeyCode.E) && isPlayerNearby == true)
             {
-                Debug.Log("hoy");
-                OpenChest();
+                Debug.Log("hey");
+                dialogueManager.StartDialogue(dialogue);
                 
             }
+            
+        if (Input.GetKeyDown(KeyCode.Return) && isPlayerNearby == true)
+            {
+                dialogueManager.DisplayNextSentences();
+            }
+            
    }
 
-    private void OnTriggerEnter2D(Collider2D other)
+     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("hey");
         UIe.SetActive(true);
@@ -53,24 +60,4 @@ public class chest : MonoBehaviour
         }
     }
 
-    private void OpenChest()
-    {
-        scriptPabloReference.SlashUnlock = true; 
-        // Apply upgrades when the chest is opened
-        ApplyUpgrades();
-        // You might also want to add visual effects, sound, or other gameplay elements here
-    }
-
-    private void ApplyUpgrades()
-    {
-        
-        
-        gameObject.SetActive(false);
-        foreach (Upgrade upgrade in upgrades)
-        {
-            // Apply the upgrade to the player or relevant game element
-            // For example, you might have a Player class with an ApplyUpgrade method
-            chestSytemPlayer.ApplyUpgrade(upgrade);
-        }
-    }
 }
